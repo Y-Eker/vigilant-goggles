@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D playerBody;
-    [SerializeField] float jumpForce = 50f;
+    [SerializeField] float jumpForce = 4.5f;
+    [SerializeField] float speed = 50f;
+    private float horizontalInput = 0f;
     private bool canJump = true;
     private bool spacePressed = false;
 
@@ -22,14 +24,16 @@ public class PlayerMovement : MonoBehaviour
         {
             spacePressed = true;
         }
+        horizontalInput = Input.GetAxis("Horizontal");
     }
 
     private void FixedUpdate()
     {
         if (spacePressed && canJump)
         {
-            playerBody.AddForce(transform.up * jumpForce);
+            playerBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             spacePressed = false;
         }
-    }
+        playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
+    }   
 }
