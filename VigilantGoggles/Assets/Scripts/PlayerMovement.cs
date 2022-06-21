@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D playerBody;
+    [SerializeField] float jumpForce = 50f;
+    private bool canJump = true;
+    private bool spacePressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +20,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            playerBody.AddForce(transform.up);
+            spacePressed = true;
         }
     }
 
     private void FixedUpdate()
     {
-        
+        if (spacePressed && canJump)
+        {
+            playerBody.AddForce(transform.up * jumpForce);
+            spacePressed = false;
+        }
     }
 }
