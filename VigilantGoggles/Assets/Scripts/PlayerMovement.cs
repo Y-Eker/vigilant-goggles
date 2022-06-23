@@ -6,11 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D playerBody;
     [SerializeField] Transform playerTransform;
+    [SerializeField] BoxCollider2D headCollider;
     [SerializeField] float jumpForce = 7.5f;
     [SerializeField] float speed = 4.5f;
+    [SerializeField] float crouchSpeed = 2.5f;
     public bool canJump = false;
+    public bool canStand = true;
     private float horizontalInput = 0f;
     private bool spacePressed = false;
+    private bool crouchPressed = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerTransform.localScale = new Vector3(3, 3, 1);
         }
+        crouchPressed = Input.GetKey("left ctrl");   
     }
 
     private void FixedUpdate()
@@ -45,5 +50,26 @@ public class PlayerMovement : MonoBehaviour
             spacePressed = false;
         }
         playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
+
+        if (crouchPressed)
+        {
+            headCollider.enabled = false;
+            playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
+        }
+
+        else
+        {
+            if(canStand)
+            {
+                headCollider.enabled = true;
+                playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
+            }
+
+            else
+            {
+                playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
+            }
+        }
+          
     }
 }
