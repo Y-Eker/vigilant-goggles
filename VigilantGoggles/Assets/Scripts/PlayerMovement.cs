@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D playerBody;
-    [SerializeField] float jumpForce = 4.5f;
+    [SerializeField] Transform playerTransform;
+    [SerializeField] float jumpForce = 7.5f;
     [SerializeField] float speed = 4.5f;
+    public bool canJump = false;
     private float horizontalInput = 0f;
-    private bool canJump = true;
     private bool spacePressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
         playerBody.position = new Vector2(-5.69f, 0f);
+        playerTransform.localScale = new Vector3(3, 3, 1);
     }
 
     // Update is called once per frame
@@ -25,6 +27,14 @@ public class PlayerMovement : MonoBehaviour
             spacePressed = true;
         }
         horizontalInput = Input.GetAxis("Horizontal");
+        if (horizontalInput < 0)
+        {
+            playerTransform.localScale = new Vector3(-3, 3, 1);
+        }
+        if (horizontalInput > 0)
+        {
+            playerTransform.localScale = new Vector3(3, 3, 1);
+        }
     }
 
     private void FixedUpdate()
@@ -35,15 +45,5 @@ public class PlayerMovement : MonoBehaviour
             spacePressed = false;
         }
         playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        
     }
 }
