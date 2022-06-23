@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 4.5f;
     [SerializeField] float speed = 4.5f;
     private float horizontalInput = 0f;
-    private bool canJump = false;
+    private bool canJump = true;
     private bool spacePressed = false;
 
     // Start is called before the first frame update
