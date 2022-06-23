@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
             playerBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             spacePressed = false;
         }
-        playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
 
         if (crouchPressed)
         {
@@ -59,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
-            if(canStand)
+            if (canStand)
             {
                 headCollider.enabled = true;
                 playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
@@ -67,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
             else
             {
+                headCollider.enabled = false;
                 playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
             }
         }
