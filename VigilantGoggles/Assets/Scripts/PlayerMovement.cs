@@ -47,7 +47,15 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsRunning", false);
         }
-        crouchPressed = Input.GetKey("left ctrl");   
+        crouchPressed = Input.GetKey("left ctrl");
+        if (canJump)
+        {
+            animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", true);
+        }
     }
 
     private void FixedUpdate()
