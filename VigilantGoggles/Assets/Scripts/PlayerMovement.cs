@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D playerBody;
     [SerializeField] Transform playerTransform;
     [SerializeField] BoxCollider2D headCollider;
+    [SerializeField] Animator animator;
     [SerializeField] float jumpForce = 7.5f;
     [SerializeField] float speed = 4.5f;
     [SerializeField] float crouchSpeed = 1.5f;
@@ -21,12 +22,13 @@ public class PlayerMovement : MonoBehaviour
     {
         playerBody.position = new Vector2(-5.69f, 0f);
         playerTransform.localScale = new Vector3(3, 3, 1);
+        animator.SetBool("IsRunning", false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && canJump)
         {
             spacePressed = true;
         }
@@ -34,10 +36,16 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput < 0)
         {
             playerTransform.localScale = new Vector3(-3, 3, 1);
+            animator.SetBool("IsRunning", true);
         }
-        if (horizontalInput > 0)
+        else if (horizontalInput > 0)
         {
             playerTransform.localScale = new Vector3(3, 3, 1);
+            animator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
         }
         crouchPressed = Input.GetKey("left ctrl");   
     }
