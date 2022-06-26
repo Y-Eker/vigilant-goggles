@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] BoxCollider2D headCollider;
     [SerializeField] float jumpForce = 7.5f;
     [SerializeField] float speed = 4.5f;
-    [SerializeField] float crouchSpeed = 2.5f;
+    [SerializeField] float crouchSpeed = 1.5f;
     public bool canJump = false;
     public bool canStand = true;
     private float horizontalInput = 0f;
