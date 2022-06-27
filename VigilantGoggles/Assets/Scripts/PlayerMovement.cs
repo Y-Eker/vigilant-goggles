@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canCrouch = false;
     private float horizontalInput = 0f;
     private bool spacePressed = false;
-    private bool crouchPressed = false; 
+    private bool crouchPressed = false;
+    private bool isCrouching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,16 +59,16 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", true);
         }
         canCrouch = canJump;
-        animator.SetBool("IsCrouching", !headCollider.enabled);
+        animator.SetBool("IsCrouching", isCrouching);
     }
 
     private void FixedUpdate()
     {
-        if (!headCollider.enabled)
+        if (isCrouching)
         {
             spacePressed = false;
         }
-        if (spacePressed && canJump && headCollider.enabled)
+        if (spacePressed && canJump && !isCrouching)
         {
             playerBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             spacePressed = false;
@@ -75,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (crouchPressed && canCrouch)
         {
+            isCrouching = true;
             headCollider.enabled = false;
             playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
         }
@@ -83,12 +85,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (canStand)
             {
+                isCrouching = false;
                 headCollider.enabled = true;
                 playerBody.velocity = new Vector2(horizontalInput * speed, playerBody.velocity.y);
             }
 
             else
             {
+                isCrouching = true;
                 headCollider.enabled = false;
                 playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
             }
