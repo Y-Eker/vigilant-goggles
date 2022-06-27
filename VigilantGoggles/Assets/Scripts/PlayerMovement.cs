@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchSpeed = 1.5f;
     public bool canJump = false;
     public bool canStand = true;
+    private bool canCrouch = false;
     private float horizontalInput = 0f;
     private bool spacePressed = false;
     private bool crouchPressed = false; 
@@ -56,17 +57,23 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", true);
         }
+        canCrouch = canJump;
+        animator.SetBool("IsCrouching", !headCollider.enabled);
     }
 
     private void FixedUpdate()
     {
-        if (spacePressed && canJump)
+        if (!headCollider.enabled)
+        {
+            spacePressed = false;
+        }
+        if (spacePressed && canJump && headCollider.enabled)
         {
             playerBody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             spacePressed = false;
         }
 
-        if (crouchPressed)
+        if (crouchPressed && canCrouch)
         {
             headCollider.enabled = false;
             playerBody.velocity = new Vector2(horizontalInput * crouchSpeed, playerBody.velocity.y);
