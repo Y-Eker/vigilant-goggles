@@ -37,12 +37,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         if (horizontalInput < 0)
         {
-            playerTransform.localScale = new Vector3(-3, 3, 1);
+            playerTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
             animator.SetBool("IsRunning", true);
         }
         else if (horizontalInput > 0)
         {
-            playerTransform.localScale = new Vector3(3, 3, 1);
+            playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
             animator.SetBool("IsRunning", true);
         }
         else
