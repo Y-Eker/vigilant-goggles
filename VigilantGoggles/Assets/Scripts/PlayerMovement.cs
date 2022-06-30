@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerBody.position = new Vector2(-5.69f, 0f);
-        playerTransform.localScale = new Vector3(3, 3, 1);
+        playerTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         animator.SetBool("IsRunning", false);
     }
 
