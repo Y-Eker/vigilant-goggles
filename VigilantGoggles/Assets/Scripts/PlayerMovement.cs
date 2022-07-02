@@ -13,11 +13,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchSpeed = 1.5f;
     public bool canJump = false;
     public bool canStand = true;
+    public bool isCrouching = false;
     private bool canCrouch = false;
     private float horizontalInput = 0f;
     private bool spacePressed = false;
     private bool crouchPressed = false;
-    private bool isCrouching = false;
+
 
     // Start is called before the first frame update
     void Start()
