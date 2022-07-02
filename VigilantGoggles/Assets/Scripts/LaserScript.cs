@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LaserScript : MonoBehaviour
 {
-    [SerializeField] Transform FirePointPosition;
+    [SerializeField] Transform firePointPosition;
+    [SerializeField] GameObject bullet;
     private bool shootPressed;
 
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             shootPressed = true;
         }
@@ -33,6 +34,6 @@ public class LaserScript : MonoBehaviour
 
     void Shoot()
     {
-
+        Instantiate(bullet, firePointPosition.position, firePointPosition.rotation);
     }
 }

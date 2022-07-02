@@ -9,7 +9,7 @@ public class FirePointPlacementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        firePointLocation.localPosition = new Vector3(0.08f, -0.021f, 0);
+        firePointLocation.localPosition = new Vector3(0.125f, -0.021f, 0);
     }
 
     // Update is called once per frame
@@ -17,12 +17,12 @@ public class FirePointPlacementScript : MonoBehaviour
     {
         if (playerMovementScript.isCrouching)
         {
-            firePointLocation.localPosition = new Vector3(0.115f, -0.075f, 0);
+            firePointLocation.localPosition = new Vector3(0.16f, -0.075f, 0);
 
         }
         else
         {
-            firePointLocation.localPosition = new Vector3(0.085f, -0.021f, 0);
+            firePointLocation.localPosition = new Vector3(0.125f, -0.021f, 0);
         }
     }
 }
