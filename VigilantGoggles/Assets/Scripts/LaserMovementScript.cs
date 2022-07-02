@@ -10,11 +10,19 @@ public class LaserMovementScript : MonoBehaviour
     void Start()
     {
         bulletRigidbody.velocity = transform.right * bulletSpeed;
+        Destroy(gameObject, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }

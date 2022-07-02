@@ -20,7 +20,10 @@ public class headScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        playerMovementScript.canStand = false;
+        if (collision.tag != "Bullet")
+        {
+            playerMovementScript.canStand = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
