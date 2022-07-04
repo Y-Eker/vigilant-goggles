@@ -6,7 +6,9 @@ public class LaserScript : MonoBehaviour
 {
     [SerializeField] Transform firePointPosition;
     [SerializeField] GameObject bullet;
+    [SerializeField] float shootingDelay = 0.2f;
     private bool shootPressed;
+    private float shotTime;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > shotTime + shootingDelay)
         {
             shootPressed = true;
         }
@@ -29,6 +31,7 @@ public class LaserScript : MonoBehaviour
         {
             Shoot();
             shootPressed = false;
+            shotTime = Time.time;
         }
     }
 

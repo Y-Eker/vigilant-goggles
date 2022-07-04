@@ -490,6 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePointPosition: {fileID: 1534365632}
   bullet: {fileID: 5973671216982855131, guid: 0a4f219baf1345848a87e31912899ed1, type: 3}
+  shootingDelay: 0.2
 --- !u!1 &714053632
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,14 +591,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714053632}
-  m_LocalRotation: {x: -0.0013930406, y: 0.99999905, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 9.56, y: 1.12, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -0.16}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!61 &714053636
 BoxCollider2D:
   m_ObjectHideFlags: 0

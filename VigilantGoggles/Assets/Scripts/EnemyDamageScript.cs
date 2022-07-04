@@ -17,17 +17,14 @@ public class EnemyDamageScript : MonoBehaviour
     {
         if (health <= 0)
         {
-            Debug.Log("Dead");
             Destroy(gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
         if (collision.tag == "Bullet")
         {
             health -= bulletDamage;
-            Debug.Log("hit");
         }
     }
 }
