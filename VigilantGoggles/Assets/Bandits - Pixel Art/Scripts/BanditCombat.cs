@@ -6,16 +6,19 @@ public class BanditCombat : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] Transform attackPoint;
-    [SerializeField] float attackRange = 0.4f;
     [SerializeField] LayerMask enemyLayers;
+    [SerializeField] float attackRange = 0.4f;
+    [SerializeField] float attackRate = 1f; 
     [SerializeField] int damage = 25;
     private bool canAttack = true;
+    private float lastHit;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time - attackRate > lastHit)
         {
             animator.SetTrigger("Attack");
+            lastHit = Time.time;
         }
     }
     public void Attack()
